@@ -1,0 +1,27 @@
+{
+	"site": {
+		"title": "Taskie - Hodimlar bilan ishlash"
+	},
+	"menu": {
+		"navigations": [
+			{
+				"name": "Kompaniya haqida",
+				"href": "https://mbos.uz"
+			},
+			{
+				"name": "Narxlar",
+				"href": "#pricing"
+			},
+			{
+				"name": "Imkoniyatlar",
+				"href": "#features"
+			}
+		],
+		"buttons": [
+			{
+				"name": "Bo'glanish",
+				"href": "#contact"
+			}
+		] 
+	}
+}

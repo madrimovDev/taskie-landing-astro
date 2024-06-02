@@ -1,0 +1,95 @@
+---
+import { t } from "i18next";
+import LangSelector from "../core/LangSelector.astro";
+import ExternalLink from "astro-heroicons/solid/ArrowTopRightOnSquare.astro";
+
+type NavItem = {
+	name: string;
+	href: string;
+};
+const navigations = t("menu.navigations", {
+	returnObjects: true,
+}) as NavItem[];
+const navButtons = t("menu.buttons", { returnObjects: true }) as NavItem[];
+---
+
+<div
+	id="navbar"
+	class="sticky top-0 inset-x-0 w-full z-50 transition-colors"
+>
+	<nav class="h-24 mt-6 container flex items-center">
+		<div class="flex-none">
+			<a href="">
+				<img
+					alt="taskie"
+					src="/logo_full.png"
+					width={120}
+				/>
+			</a>
+		</div>
+		<div class="flex-grow flex justify-center h-full items-center">
+			<ul class="flex gap-10 text-lg font-semibold text-stone-700">
+				{
+					navigations.map((item) => {
+						const isWithHttp = item.href.split("/").length > 1;
+						return (
+							<li>
+								<a
+									data-link={item.name}
+									href={item.href}
+									target={isWithHttp ? "_blank" : "_self"}
+									class="flex items-center gap-2 hover:text-primary transition-colors"
+								>
+									{item.name} {isWithHttp && <ExternalLink width="0.8em" />}
+								</a>
+							</li>
+						);
+					})
+				}
+			</ul>
+		</div>
+		<div class="flex-none flex gap-8">
+			<LangSelector />
+			<div>
+				{
+					navButtons.map((item) => {
+						return (
+							<button class="bg-primary px-8 py-4 rounded-md text-white font-bold text-lg">
+								{item.name}
+							</button>
+						);
+					})
+				}
+			</div>
+		</div>
+	</nav>
+</div>
+
+<script>
+	const navbar = document.getElementById("navbar") as HTMLDivElement;
+	window.addEventListener("scroll", () => {
+		if (navbar.getBoundingClientRect().top === 0) {
+			navbar.classList.add("backdrop-navbar");
+		} else {
+			navbar.classList.remove("backdrop-navbar");
+		}
+	});
+	const items = document.querySelectorAll<HTMLAnchorElement>("[data-link]");
+	const changeActiveLink = (hash: string) => {
+		items.forEach((item) => {
+			const itemHash = item.href.split('#').pop();
+			if (itemHash === hash) {
+				item.classList.add("active-link");
+			} else {
+				item.classList.remove("active-link");
+			}
+		});
+	};
+	const hash = location.hash.substring(1);
+	changeActiveLink(hash);
+	window.addEventListener("hashchange", (e) => {
+		const hash = e.newURL.split("#").pop();
+		console.log(hash);
+		changeActiveLink(hash ?? "");
+	});
+</script>
