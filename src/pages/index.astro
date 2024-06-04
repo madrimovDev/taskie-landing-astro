@@ -1,36 +1,38 @@
 ---
-import i18next, {t, changeLanguage} from "i18next";
-import {HeadHrefLangs} from "astro-i18next/components";
+import i18next, { t, changeLanguage } from "i18next";
+import { HeadHrefLangs } from "astro-i18next/components";
 import Navbar from "../components/navbar/Navbar.astro";
+import Header from "../components/header/Header.astro";
+import Parners from "../components/partners/Parners.astro";
+import Features from "../components/features/Features.astro";
+import Pricing from "../components/pricing/Pricing.astro";
 changeLanguage("uz");
 ---
 
 <html lang={i18next.language}>
 <head>
-    <meta charset="utf-8"/>
-    <link
-            rel="icon"
-            type="image/svg+xml"
-            href="/favicon.svg"
-    />
-    <meta
-            name="viewport"
-            content="width=device-width"
-    />
-    <meta
-            name="generator"
-            content={Astro.generator}
-    />
-    <title>{t("site.title")}</title>
-    <HeadHrefLangs/>
+  <meta charset="utf-8" />
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="/favicon.svg"
+  />
+  <meta
+    name="viewport"
+    content="width=device-width"
+  />
+  <meta
+    name="generator"
+    content={Astro.generator}
+  />
+  <title>{t("site.title")}</title>
+  <HeadHrefLangs />
 </head>
-<body>
-<Navbar/>
-<div class="container h-[200vh]">
-    Container
-    <button class="hidden">Restart</button>
-    <div class="h-36 w-36 bg-red-400 rounded-md rotate-45 mx-auto"></div>
-</div>
-
+<body class="">
+<Navbar />
+<Header />
+<Parners />
+<Features />
+<Pricing />
 </body>
 </html>
