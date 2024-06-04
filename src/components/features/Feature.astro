@@ -1,5 +1,4 @@
 ---
-import Astro from "astro";
 import clsx from "clsx/lite";
 interface Props {
   title: string,
@@ -14,7 +13,10 @@ const { title, description, image, reverse = false } = Astro.props;
   <div class="w-full flex flex-col items-start gap-8">
     <h3 class="text-4xl font-black">{title}</h3>
     <p class="text-lg opacity-50">{description}</p>
-    <button class="px-8 py-4 text-lg border-2 rounded-md hover:bg-primary/10 font-bold border-primary text-primary mt-8">Learn More</button>
+    <button
+      class="px-8 py-4 text-lg border-2 rounded-md hover:bg-primary/10 font-bold border-primary text-primary mt-8">Learn
+      More
+    </button>
   </div>
   <div class="w-full">
     <img src={image} alt="Peoples" class="w-full" />

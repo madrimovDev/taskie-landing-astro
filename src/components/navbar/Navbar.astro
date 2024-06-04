@@ -68,8 +68,8 @@ const navButtons = t("menu.buttons", {returnObjects: true}) as NavItem[];
 
 <script>
     const navbar = document.getElementById("navbar") as HTMLDivElement;
-    document.getElementById('header').style.paddingTop = navbar.getBoundingClientRect().height + 'px'
-    window.addEventListener("scroll", (e) => {
+    document.getElementById('header').style.paddingTop = navbar.getBoundingClientRect()?.height + 'px'
+    window.addEventListener("scroll", () => {
         if (window.scrollY >= navbar.getBoundingClientRect().height) {
             navbar.classList.add("backdrop-navbar");
         } else {
