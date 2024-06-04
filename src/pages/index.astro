@@ -1,11 +1,13 @@
 ---
+import "./style.css";
 import i18next, { t, changeLanguage } from "i18next";
 import { HeadHrefLangs } from "astro-i18next/components";
 import Navbar from "../components/navbar/Navbar.astro";
 import Header from "../components/header/Header.astro";
-import Parners from "../components/partners/Parners.astro";
+import Partners from "../components/partners/Parners.astro";
 import Features from "../components/features/Features.astro";
 import Pricing from "../components/pricing/Pricing.astro";
+import Footer from '../components/footer/Footer.astro'
 changeLanguage("uz");
 ---
 
@@ -31,8 +33,9 @@ changeLanguage("uz");
 <body class="">
 <Navbar />
 <Header />
-<Parners />
+<Partners />
 <Features />
 <Pricing />
+<Footer />
 </body>
 </html>
