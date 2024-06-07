@@ -1,14 +1,16 @@
 <section id="partenrs" class="py-8">
-    <div class="container">
-        <div class="flex gap-4">
-            {
-                Array.from(new Array(5).keys()).map((_, i) => {
-                    return i
-                }).map(i => {
-                    return (
-                            <div class="grow py-4 text-xl px-4 rounded-md shadow-md">{i + 1} Partner</div>);
-                })
-            }
-        </div>
-    </div>
+  <div class="container">
+    <marquee loop="infinity">
+      <div class="flex gap-4">
+        {
+          Array.from(new Array(5).keys()).map((_, i) => {
+            return i;
+          }).map(i => {
+            return (
+              <div class="min-w-[200px] grow py-4 text-xl px-4 rounded-md shadow-md">{i + 1} Partner</div>);
+          })
+        }
+      </div>
+    </marquee>
+  </div>
 </section>

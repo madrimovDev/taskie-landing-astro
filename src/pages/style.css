@@ -1,3 +1,11 @@
-html{
+html {
     scroll-behavior: smooth;
+}
+
+.navbar-expanded {
+    @apply max-h-0
+}
+
+.navbar-expand {
+    @apply max-h-[500px]
 }
