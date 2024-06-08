@@ -1,18 +1,20 @@
-<div class="flex flex-col gap-4">
+---
+import { t } from "i18next";
+---
+<div class="md:w-3/4  flex flex-col gap-4">
   <h2 id="header-subtitle" class="text-primary text-xl ">
     Help all startups
   </h2>
   <h1 id="header-title" class="text-4xl md:text-7xl font-black leading-tight">
-    Simple <br> Technology <br> for Complex Tasks
+    {t("header.title")}
   </h1>
   <p id="header-desc" class="opacity-50 font-medium">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi corporis cupiditate dicta eos est facere
-    fugit, incidunt laborum magnam obcaecati qui reiciendis, repellat sed, veniam. Exercitationem possimus quas
-    voluptatem!
+    {t("header.description")}
   </p>
   <div class="mt-4 flex gap-4">
     <button id="header-btn-primary"
-            class="bg-primary px-2 sm:px-4 py-2 md:px-8 md:py-4 rounded-md font-bold text-white text-lg">Sinab Ko'rish
+            class="bg-primary px-2 sm:px-4 py-2 md:px-8 md:py-4 rounded-md font-bold text-white text-lg">Sinab
+      Ko'rish
     </button>
     <button id="header-btn-secondary"
             class="text-primary font-bold inline-flex items-center gap-2 hover:bg-primary/10 px-2 sm:px-4 py-2 md:px-8 md:py-4 rounded-md">

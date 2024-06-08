@@ -1,0 +1,89 @@
+---
+const data = [
+  {
+    name: "Taskie qurilma",
+    price: 1_700_000,
+    count: "1 dona"
+  },
+  {
+    name: "Tizim va qurilma o'rnatish, sozlash",
+    price: 1_800_000,
+    count: "1 marta"
+  },
+  {
+    name: "Shu tashkilotga qo'shimcha qurilma o'rnatish va sozlash",
+    price: 300_000,
+    count: "1 dona"
+  },
+  {
+    name: "Abonent to'lovi (1 - 10)",
+    price: 200_000,
+    count: "1 oylik"
+  },
+  {
+    name: "Abonent to'lovi (11 - 20)",
+    price: 380_000,
+    count: "1 oylik"
+  },
+  {
+    name: "Abonent to'lovi (21 - 30)",
+    price: 540_000,
+    count: "1 oylik"
+  },
+  {
+    name: "Abonent to'lovi (31 - 50)",
+    price: 750_000,
+    count: "1 oylik"
+  },
+  {
+    name: "Abonent to'lovi (xodimlar soni 51 dan 70 gacha bo'lsa, xar bir qo'shimcha xodim uchun)",
+    price: 750_000,
+    additionalPrice: 12_000,
+    count: "1 oylik"
+  },
+  {
+    name: "Abonent to'lovi (xodimlar soni 71 dan 100 gacha bo'lsa, xar bir qo'shimcha xodim uchun)",
+    price: 750_000,
+    additionalPrice: 12_000,
+    count: "1 oylik"
+  },
+  {
+    name: "Abonent to'lovi (xodimlar soni 100 dan 200 gacha bo'lsa, xar bir qo'shimcha xodim uchun)",
+    price: 750_000,
+    additionalPrice: 10_000,
+    count: "1 oylik"
+  },
+  {
+    name: "Taskie da GPS moduli (xar bir xodim uchun, qo'shimcha)",
+    price: 5_000,
+    count: "1 dona"
+  }
+];
+---
+
+<section id="pricing" class="py-8">
+  <h2 class="text-center text-3xl md:text-6xl mt-8 mb-8 md:mb-16 font-semibold">Narxlar</h2>
+  <div class="container overflow-x-auto ">
+    <table class="table-auto min-w-full divide-y divide-gray-200 rounded-md overflow-hidden">
+      <thead>
+      <tr class="bg-primary text-white">
+        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">#</th>
+        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Xizmat turi</th>
+        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Narxi</th>
+      </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+      {data.map((item, index) => (
+        <tr
+          class={index % 2 === 0 ? "bg-gray-50 hover:bg-primary-100/10 transition-all" : "bg-white hover:bg-primary-100/10 transition-all"}>
+          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{index + 1}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.name}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            {item.price} sum {"additionalPrice" in item ? `/ ${item.additionalPrice}* sum` : ""}
+          </td>
+        </tr>
+      ))}
+      </tbody>
+    </table>
+  </div>
+</section>

@@ -1,27 +1,57 @@
 {
-	"site": {
-		"title": "Taskie - Hodimlar bilan ishlash"
-	},
-	"menu": {
-		"navigations": [
-			{
-				"name": "Kompaniya haqida",
-				"href": "https://mbos.uz"
-			},
-			{
-				"name": "Narxlar",
-				"href": "#pricing"
-			},
-			{
-				"name": "Imkoniyatlar",
-				"href": "#features"
-			}
-		],
-		"buttons": [
-			{
-				"name": "Bo'glanish",
-				"href": "#contact"
-			}
-		] 
-	}
+  "site": {
+    "title": "Taskie - Hodimlar bilan ishlash"
+  },
+  "menu": {
+    "navigations": [
+      {
+        "name": "Kompaniya haqida",
+        "href": "https://mbos.uz"
+      },
+      {
+        "name": "Narxlar",
+        "href": "#pricing"
+      },
+      {
+        "name": "Imkoniyatlar",
+        "href": "#features"
+      }
+    ],
+    "buttons": [
+      {
+        "name": "Bo'glanish",
+        "href": "#contact"
+      }
+    ]
+  },
+  "header": {
+    "title": "Taskie - hodimlarni nazorat qilish",
+    "description": "Taskie - hodimlar bilan ishlash dasturiga xush kelibsiz. Bu dastur jamoangizning vazifalarni boshqarishni osonlashtiradi va ish samaradorligini oshiradi."
+  },
+  "features": {
+    "title": "Imkoniyatlar",
+    "description": "",
+    "features": [
+      {
+        "title": "Vazifalarni boshqarish",
+        "details": "Vazifalarni boshqarish va ularga muddat belgilash, xodimlar o'rtasidagi vazifalarni taqsimlash."
+      },
+      {
+        "title": "Faollikni oshirish",
+        "details": "Jamoalar topshiriqlarni bajarish muddatlarini va ulardagi taraqqiyotni kuzatishlari mumkin."
+      },
+      {
+        "title": "Bildirishnomalar",
+        "details": "Vazifa muddatlari bilan bog'liq muammolarni oldini olish uchun eslatmalar va bildirishnomalar yuborish."
+      },
+      {
+        "title": "Hisobotlar",
+        "details": "Boshqaruvchilar bajarilgan va bajarilmagan vazifalar haqida xisobotlarni ko'rishlari va ularga muvofiq chora ko'rishlari mumkin."
+      },
+      {
+        "title": "Aloqa",
+        "details": "Loyiha ishtirokchilari o'rtasida oson aloqa o'rnatish, savollar va muhim ma'lumotlarni tez yetkazish."
+      }
+    ]
+  }
 }

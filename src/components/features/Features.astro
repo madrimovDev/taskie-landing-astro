@@ -1,25 +1,25 @@
 ---
 import Feature from "./Feature.astro";
+import { t } from "i18next";
+const feats = t("features.features", {
+  returnObjects: true
+}) as { title: string, details: string }[];
 ---
 <section id="features" class="py-8">
   <div class="container">
     <div id="features-container" class="flex flex-col justify-center items-center my-16">
-      <h2 id="features-title" class="text-3xl md:text-6xl font-semibold">Our Features</h2>
-      <p id="features-desc" class="md:w-1/2 mt-4 md:text-lg text-center opacity-50">Lorem ipsum dolor sit amet,
-        consectetur adipisicing elit.
-        Adipisci
-        animi dolorum est ex natus nostrum
-        nulla odio repellat soluta voluptate?</p>
+      <h2 id="features-title" class="text-3xl md:text-6xl font-semibold">{t("features.title")}</h2>
+      <p id="features-desc" class="md:w-1/2 mt-4 md:text-lg text-center opacity-50">{t("features.description")}</p>
     </div>
-    <div class="flex flex-col gap-10">
-      <Feature
-        title="Marketing Strategy"
-        description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi dolorum est ex natus nostrum nulla odio repellat soluta voluptate"
-        reverse={true} image="/peoples.png" />
-      <Feature
-        title="Marketing Stategy"
-        description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi dolorum est ex natus nostrum nulla odio repellat soluta voluptate"
-        reverse={false} image="/server.png" />
+    <div class="flex flex-col gap-32 mt-10">
+      {
+        feats.map((feat, i) => (
+          <Feature
+            title={feat.title}
+            description={feat.details}
+            reverse={i % 2 === 0} image="/peoples.png" />
+        ))
+      }
     </div>
   </div>
 </section>
@@ -50,7 +50,7 @@ import Feature from "./Feature.astro";
     start: "top 70%",
     end: "bottom 70%",
     animation: timeline,
-    scrub: 1,
+    scrub: 1
   });
 
 </script>
