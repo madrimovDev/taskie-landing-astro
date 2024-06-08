@@ -1,16 +1,50 @@
-<section id="partenrs" class="py-8">
-  <div class="container">
-    <marquee loop="infinity">
-      <div class="flex gap-4">
+<section id="partners" class="py-8">
+  <div class="">
+    <div class="flex gap-4 overflow-hidden whitespace-nowrap" data-gsap="marquee-container">
+      <div data-gsap="marquee" class="flex gap-4">
         {
           Array.from(new Array(5).keys()).map((_, i) => {
             return i;
           }).map(i => {
             return (
-              <div class="min-w-[200px] grow py-4 text-xl px-4 rounded-md shadow-md">{i + 1} Partner</div>);
+              <div data-gsap="marquee-item"
+                   class="min-w-[200px] grow py-4 text-xl px-4 rounded-md border border-black/10">{i + 1}
+                Partner
+              </div>
+            );
           })
         }
       </div>
-    </marquee>
+    </div>
   </div>
 </section>
+
+
+<script>
+  import { gsap } from "../../utils/gsap";
+
+  const playMarquee = () => {
+    const marqueeContainer = document.querySelector("[data-gsap='marquee-container']");
+    const marqueeContent = document.querySelector("[data-gsap='marquee']");
+
+    if (!marqueeContainer) return;
+    if (!marqueeContent) return;
+    const marqueeContentClone = marqueeContent.cloneNode(true);
+    marqueeContainer.appendChild(marqueeContentClone);
+
+    const width = parseInt(
+      getComputedStyle(marqueeContent).getPropertyValue("width"), 10
+    );
+    const gap = parseInt(
+      getComputedStyle(marqueeContent).getPropertyValue("column-gap"), 10
+    );
+    const distanceToTranslate = -1 * (gap + width);
+
+    gsap.fromTo(
+      marqueeContainer.children,
+      { x: 0 },
+      { x: distanceToTranslate, duration: 5, ease: "none", repeat: -1 }
+    );
+  };
+  playMarquee()
+</script>

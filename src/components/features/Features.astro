@@ -3,9 +3,10 @@ import Feature from "./Feature.astro";
 ---
 <section id="features" class="py-8">
   <div class="container">
-    <div class="flex flex-col justify-center items-center my-16">
-      <h2 class="text-3xl md:text-6xl font-semibold">Our Features</h2>
-      <p class="md:w-1/2 mt-4 md:text-lg text-center opacity-50">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    <div id="features-container" class="flex flex-col justify-center items-center my-16">
+      <h2 id="features-title" class="text-3xl md:text-6xl font-semibold">Our Features</h2>
+      <p id="features-desc" class="md:w-1/2 mt-4 md:text-lg text-center opacity-50">Lorem ipsum dolor sit amet,
+        consectetur adipisicing elit.
         Adipisci
         animi dolorum est ex natus nostrum
         nulla odio repellat soluta voluptate?</p>
@@ -22,3 +23,34 @@ import Feature from "./Feature.astro";
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap, ScrollTrigger } from "../../utils/gsap";
+
+  const timeline = gsap.timeline({
+    defaults: {
+      scale: 0.8,
+      opacity: 0,
+      transformOrigin: "center",
+      duration: 1,
+      ease: "power2.out"
+    }
+  });
+
+  timeline.from("#features-title", {
+    y: -50,
+    rotation: -5
+  }).from("#features-desc", {
+    y: -50,
+    rotation: 5
+  }, 0.2);
+
+  ScrollTrigger.create({
+    trigger: "#features-container",
+    start: "top 70%",
+    end: "bottom 70%",
+    animation: timeline,
+    scrub: 1,
+  });
+
+</script>

@@ -79,14 +79,22 @@ const navButtons = t("menu.buttons", { returnObjects: true }) as NavItem[];
 </div>
 
 <script>
+  import {gsap} from '../../utils/gsap'
   const navbar = document.getElementById("navbar") as HTMLDivElement;
   const header = document.getElementById("header") as HTMLElement;
   const navMenu = document.getElementById("navbar-menu");
   const navToggle = document.getElementById("navbar-toggle");
   let navbarHeight = navbar.getBoundingClientRect().height;
   header.style.paddingTop = navbarHeight + "px";
-
+  gsap.from(navbar, {
+    duration: 1.5,          // duration of the animation
+    y: '-80%',             // starting position
+    opacity: 0.5,             // starting opacity
+    ease: 'power4.out',     // easing function for a smooth effect
+    transformOrigin: 'top center',  // origin of the transformation
+  })
   const toggleNavbar = (type?: "show" | "hide") => {
+    if(!navMenu) return
     if (type === "show") {
       navMenu.classList.remove("navbar-expanded");
       navMenu.classList.add("navbar-expand");
@@ -121,8 +129,8 @@ const navButtons = t("menu.buttons", { returnObjects: true }) as NavItem[];
   });
 
   window.addEventListener("scroll", handleScroll);
-  navToggle.addEventListener("click", () => {
-    if(navMenu.classList.contains("navbar-expanded")) {
+  navToggle?.addEventListener("click", () => {
+    if(navMenu?.classList.contains("navbar-expanded")) {
       toggleNavbar('show')
     } else {
       toggleNavbar('hide')

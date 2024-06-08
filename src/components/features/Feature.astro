@@ -9,12 +9,14 @@ interface Props {
 const { title, description, image, reverse = false } = Astro.props;
 ---
 
-<div class={clsx("flex gap-8 md:gap-16 items-center", reverse && "flex-col-reverse md:flex-row-reverse", !reverse && "flex-col-reverse md:flex-row")}>
+<div data-gsap="features"
+     class={clsx("flex gap-8 md:gap-16 items-center", reverse && "flex-col-reverse md:flex-row-reverse", !reverse && "flex-col-reverse md:flex-row")}>
   <div class="w-full flex flex-col items-start gap-4 md:gap-8">
     <h3 class="text-2xl md:text-4xl font-black">{title}</h3>
     <p class="md:text-lg opacity-50">{description}</p>
     <button
-      class="px-2 sm:px-4 md:px-8 py-2 md:py-4 md:text-lg border-2 rounded-md hover:bg-primary/10 font-bold border-primary text-primary mt-4 md:mt-8">Learn
+      class="px-2 sm:px-4 md:px-8 py-2 md:py-4 md:text-lg border-2 rounded-md hover:bg-primary/10 font-bold border-primary text-primary mt-4 md:mt-8">
+      Learn
       More
     </button>
   </div>
@@ -22,3 +24,53 @@ const { title, description, image, reverse = false } = Astro.props;
     <img src={image} alt="Peoples" class="w-full" />
   </div>
 </div>
+
+<script>
+  import { gsap, ScrollTrigger } from "../../utils/gsap";
+
+  const elements = document.querySelectorAll("[data-gsap='features']");
+
+  elements.forEach((el) => {
+
+    const h3 = el.querySelector("h3");
+    const p = el.querySelector("p");
+    const img = el.querySelector("img");
+    const button = el.querySelector("button");
+
+    const timeline = gsap.timeline({
+      defaults: {
+        opacity: 0,
+        scale: 0.8,
+        duration: 1,
+        ease: "power2.out"
+      }
+    });
+
+    timeline
+      .from(h3, {
+        rotate: 5,
+        y: -20
+      })
+      .from(img, {
+        rotate: 5,
+        y: -20
+      }, "-=0.7") // Start slightly before the previous animation ends
+      .from(p, {
+        rotate: -5,
+        y: 20
+      }, "-=0.8") // Start slightly before the previous animation ends
+      .from(button, {
+        rotate: -5,
+        y: 20
+      }, "-=0.6");
+
+    ScrollTrigger.create({
+      animation: timeline,
+      trigger: el,
+      start: "top 70%", // Start animation when the trigger is 80% from the top of the viewport
+      end: "bottom 70%", // End animation when the trigger is 20% from the bottom of the viewport
+      scrub: 2, // Smooth scrubbing
+    });
+
+  });
+</script>
