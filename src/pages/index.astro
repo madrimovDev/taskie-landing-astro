@@ -1,43 +1,15 @@
 ---
-import "./style.css";
-import i18next, { t, changeLanguage } from "i18next";
-import { HeadHrefLangs } from "astro-i18next/components";
-import Navbar from "../components/navbar/Navbar.astro";
+import { changeLanguage } from "i18next";
 import Header from "../components/header/Header.astro";
 import Partners from "../components/partners/Parners.astro";
 import Features from "../components/features/Features.astro";
 import Pricing from "../components/pricing/Pricing.astro";
-import Footer from "../components/footer/Footer.astro";
-import PricingTable from "../components/pricing/PricingTable.astro";
+import Layout from "../layouts/layout.astro";
 changeLanguage("uz");
 ---
-
-<html lang={i18next.language}>
-<head>
-  <meta charset="utf-8" />
-  <link
-    rel="icon"
-    type="image/svg+xml"
-    href="/favicon.svg"
-  />
-  <meta
-    name="viewport"
-    content="width=device-width"
-  />
-  <meta
-    name="generator"
-    content={Astro.generator}
-  />
-  <title>{t("site.title")}</title>
-  <HeadHrefLangs />
-</head>
-<body class="">
-<Navbar />
-<Header />
-<Partners />
-<Features />
-<Pricing />
-<!--<PricingTable />-->
-<Footer />
-</body>
-</html>
+<Layout>
+  <Header />
+  <Partners />
+  <Features />
+  <Pricing />
+</Layout>

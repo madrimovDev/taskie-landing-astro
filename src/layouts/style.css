@@ -9,3 +9,8 @@ html {
 .navbar-expand {
     @apply max-h-[500px]
 }
+
+.accordion-content {
+    @apply transition-all duration-300 overflow-hidden
+}
+

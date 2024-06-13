@@ -1,96 +1,42 @@
 ---
-const plans = [
-  {
-    name: "Basic Paket",
-    products: [
-      {
-        name: "Taskie qurilma",
-        price: 1_700_000,
-        count: "1 dona"
-      },
-      {
-        name: "Tizim va qurilma o'rnatish, sozlash",
-        price: 1_800_000,
-        count: "1 marta"
-      },
-      {
-        name: "Abonent to'lovi (1 - 10)",
-        price: 200_000,
-        count: "1 oylik"
-      }
-    ],
-    totalPrice: 3_700_000
-  },
-  {
-    name: "Standard Paket",
-    products: [
-      {
-        name: "Taskie qurilma",
-        price: 1_700_000,
-        count: "1 dona"
-      },
-      {
-        name: "Tizim va qurilma o'rnatish, sozlash",
-        price: 1_800_000,
-        count: "1 marta"
-      },
-      {
-        name: "Abonent to'lovi (11 - 20)",
-        price: 380_000,
-        count: "1 oylik"
-      },
-      {
-        name: "Qo'shimcha qurilma o'rnatish va sozlash",
-        price: 300_000,
-        count: "1 dona"
-      }
-    ],
-    totalPrice: 4_180_000
-  },
-  {
-    name: "Premium Paket",
-    products: [
-      {
-        name: "Taskie qurilma",
-        price: 1_700_000,
-        count: "1 dona"
-      },
-      {
-        name: "Tizim va qurilma o'rnatish, sozlash",
-        price: 1_800_000,
-        count: "1 marta"
-      },
-      {
-        name: "Abonent to'lovi (31 - 50)",
-        price: 750_000,
-        count: "1 oylik"
-      },
-      {
-        name: "Taskie da GPS moduli",
-        price: 5_000,
-        count: "10 dona"
-      }
-    ],
-    totalPrice: 4_300_000
-  },
-  {
-    name: "Enterprise Paket",
-    products: [],
-    totalPrice: 0
-  }
-];
+import i18next, { t } from "i18next";
+export interface Root {
+  name: string;
+  products: Product[];
+  totalPrice: number;
+}
+
+export interface Product {
+  name: string;
+  price: number;
+  count: string;
+}
+const plans = t("plans.items", {
+  returnObjects: true
+}) as Root[];
 ---
 
 <section id="pricing" class="py-8">
   <h2 class="text-center text-3xl md:text-6xl mt-8 mb-8 md:mb-16 font-semibold">Tariflar</h2>
   <div class="container">
-    <div class="flex flex-col md:flex-row gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {
-        plans.map(plan => {
+        plans.map((plan, index) => {
           return (
             <div
               data-gsap="pricing-item"
-              class="w-full shadow-md py-8 px-4 flex flex-col gap-4 items-center rounded-md border border-transparent hover:border-primary">
+              class="w-full shadow-md py-8 px-4 flex flex-col gap-4 items-center rounded-md border hover:border-primary overflow-hidden relative"
+              class:list={[{
+                "border-2 border-primary": index === 1,
+                "border-transparent": index !== 1,
+              }]}
+            >
+              <div
+                class:list={["bg-primary text-white w-[150px] text-center py-2 font-bold absolute rotate-45 top-0 right-0 translate-x-1/4 translate-y-1/2", {
+                  "hidden": index !== 1
+                }]}>
+                TOP
+              </div>
               <h3 class="text-3xl font-bold">{plan.name}</h3>
               <p class:list={["text-center", "opacity-50", {
                 "hidden": plan.totalPrice !== 0
@@ -99,11 +45,11 @@ const plans = [
                   plan.totalPrice === 0 && "Faqat kerakli hizmatlarni tanlash imkoniyati"
                 }
               </p>
-              <ul class="w-full h-full flex flex-col gap-2">
+              <ul class="w-full h-full flex flex-col gap-4 my-4">
                 {
                   plan.products.map(product => {
                     return (
-                      <li class="flex items-center gap-2 text-sm">
+                      <li class="flex items-center gap-2 text-lg">
                         <span class="">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="size-5 text-primary">
@@ -112,20 +58,25 @@ const plans = [
                         </svg>
                         </span>
                         <span>
-                        {product.name} {product.count}
+                        {product.name} / {product.count} = {new Intl.NumberFormat(i18next.language, {
+                          currency: "UZS",
+                          style: "currency",
+                          minimumFractionDigits: 0
+                        }).format(product.price)}
                         </span>
                       </li>
                     );
                   })
                 }
               </ul>
-              <h4 class="text-xl font-bold text-primary">{plan.totalPrice > 0 && new Intl.NumberFormat("uz", {
+              <h4
+                class="text-xl font-bold text-primary">{plan.totalPrice > 0 && new Intl.NumberFormat(i18next.language, {
                 currency: "UZS",
                 style: "currency",
                 minimumFractionDigits: 0
               }).format(plan.totalPrice)}
               </h4>
-              <button class="bg-primary w-full py-4 text-lg font-bold text-white rounded-md">Sotib olish</button>
+              <button class="bg-primary w-full py-4 text-lg font-bold text-white rounded-md">{t("buy")}</button>
             </div>
           );
         })
@@ -162,7 +113,6 @@ const plans = [
     trigger: pricing,
     animation: timeline,
     start: "top 50%", // Start animation when the trigger is 80% from the top of the viewport
-    end: "bottom 90%", // End animation when the trigger is 20% from the bottom of the viewport
-    scrub: 2 // Smooth scrubbing
+    end: "bottom 90%" // End animation when the trigger is 20% from the bottom of the viewport
   });
 </script>

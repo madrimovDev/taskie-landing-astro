@@ -1,0 +1,125 @@
+---
+import ChevronDown from "astro-heroicons/solid/ChevronDown.astro";
+---
+<section id="how-it-work" class="container py-12">
+  <h2 class="text-center text-3xl md:text-6xl font-semibold">
+    Face ID qanday ishlaydi
+  </h2>
+  <div class="grid md:grid-cols-2 gap-8 mt-12 place-items-center">
+    <div class="space-y-4">
+      <div class="accordion border rounded-lg">
+        <div class="accordion-header transition-colors  cursor-pointer flex justify-between items-center p-4 border-b">
+          <h3 class="font-bold text-lg text-primary">Hududga Kirish Jarayoni</h3>
+          <button class="transition-all text-primary">
+            <ChevronDown class="size-6" />
+          </button>
+        </div>
+        <div class="accordion-content">
+          <div class="px-4 py-8">
+            <ol class="list-inside space-y-4 leading-normal">
+              <li>
+                <strong>Terminalga Yaqinlashing: </strong>Kirish joyiga kelganingizda, Face ID terminaliga yaqinlashing.
+              </li>
+              <li>
+                <strong>Yuzni Aniqlash: </strong>Kamera yuzingizni tez va aniq aniqlaydi.
+              </li>
+              <li>
+                <strong>Yorug'lik va Pozitsiya: </strong>Yaxshi yoritilgan joyda turing va yuzingiz to'g'ri
+                joylashganligiga ishonch hosil
+                qiling.
+              </li>
+              <li>
+                <strong>Kirishingiz Mumkin: </strong>
+                Agar ma'lumotlar bazasida bo'lsangiz, darhol kirishga ruxsat beriladi. Aks holda,
+                pozitsiyangizni tekshirib, qayta urinib ko'ring.
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="accordion border rounded-lg">
+        <div class="accordion-header transition-colors  cursor-pointer flex justify-between items-center p-4 border-b">
+          <h3 class="font-bold text-lg text-primary">Nega Face ID</h3>
+          <button class="transition-all text-primary">
+            <ChevronDown class="size-6" />
+          </button>
+        </div>
+        <div class="accordion-content">
+          <div class="px-4 py-8">
+            <ol class="list-inside space-y-4 leading-normal">
+              <li>
+                <strong>Xavfsizlik: </strong>Biometrik xususiyatlar boshqa shaxsga o'tkazilmaydi, shuning uchun
+                ruxsatsiz kirishning oldi olinadi.
+              </li>
+              <li>
+                <strong>Gigiena: </strong>Face ID jismoniy aloqani talab qilmaydi, bu esa qo'shimcha xavflarni
+                kamaytiradi.
+              </li>
+              <li>
+                <strong>Tezlik: </strong>Yuzni aniqlash bir soniyadan kam vaqt oladi, bu esa navbatlarni kamaytirib,
+                samaradorlikni oshiradi.
+                qiling.
+              </li>
+              <li>
+                <strong>Oson o'rnatish: </strong> Face ID tizimlarini o'rnatish tez va qulay bo'lib, boshqa an'anaviy
+                boshqaruv tizimlariga o'xshash
+                darajada qulaydir.
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full flex justify-center">
+      <img src="/img_1.png" class="w-3/4" alt="Face ID"/>
+    </div>
+  </div>
+</section>
+
+<script>
+  const accordions = document.querySelectorAll(".accordion");
+
+  accordions.forEach((el, index) => {
+    const header = el.querySelector(".accordion-header") as HTMLDivElement;
+    const content = el.querySelector(".accordion-content") as HTMLDivElement;
+    const button = el.querySelector("button") as HTMLButtonElement;
+    if (!content) return;
+
+    if (index === 0) {
+      header.classList.add("bg-gray-50");
+      content.style.maxHeight = `${content.scrollHeight}px`;
+    } else {
+      content.style.maxHeight = "0px";
+    }
+
+    header.addEventListener("click", () => {
+      const isActive = !content.classList.contains("hide");
+
+      // Close all accordions
+      accordions.forEach((accordion) => {
+        const accContent = accordion.querySelector(".accordion-content") as HTMLDivElement;
+        const accHeader = accordion.querySelector(".accordion-header") as HTMLDivElement;
+        const accButton = accordion.querySelector("button") as HTMLButtonElement;
+        if (accContent && accContent !== content) {
+          accContent.classList.add("hide");
+          accHeader.classList.remove("bg-gray-50");
+          accContent.style.maxHeight = "0px";
+          accButton.style.rotate = "0deg";
+        }
+      });
+
+      // Toggle the clicked accordion
+      if (!isActive) {
+        header.classList.add("bg-gray-50");
+        content.classList.remove("hide");
+        button.style.rotate = "180deg";
+        content.style.maxHeight = `${content.scrollHeight}px`;
+      } else {
+        content.classList.remove("hide");
+        header.classList.remove("bg-gray-50");
+        content.style.maxHeight = `${content.scrollHeight}px`;
+        button.style.rotate = "0deg";
+      }
+    });
+  });
+</script>

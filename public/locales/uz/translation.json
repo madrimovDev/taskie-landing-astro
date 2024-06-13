@@ -15,6 +15,10 @@
       {
         "name": "Imkoniyatlar",
         "href": "#features"
+      },
+      {
+        "name": "Face ID",
+        "href": "face-id"
       }
     ],
     "buttons": [
@@ -28,10 +32,13 @@
     "title": "Taskie - hodimlarni nazorat qilish",
     "description": "Taskie - hodimlar bilan ishlash dasturiga xush kelibsiz. Bu dastur jamoangizning vazifalarni boshqarishni osonlashtiradi va ish samaradorligini oshiradi."
   },
+  "tryIt": "Sinab Ko'rish",
+  "watchVideo": "Videoni ko'rish",
+  "learnMore": "Ko'proq bilish",
+  "buy": "Sotib olish",
   "features": {
     "title": "Imkoniyatlar",
-    "description": "",
-    "features": [
+    "items": [
       {
         "title": "Vazifalarni boshqarish",
         "details": "Vazifalarni boshqarish va ularga muddat belgilash, xodimlar o'rtasidagi vazifalarni taqsimlash."
@@ -53,5 +60,190 @@
         "details": "Loyiha ishtirokchilari o'rtasida oson aloqa o'rnatish, savollar va muhim ma'lumotlarni tez yetkazish."
       }
     ]
+  },
+  "plans": {
+    "title": "Tariflar",
+    "items": [
+      {
+        "name": "Basic Paket",
+        "products": [
+          {
+            "name": "Taskie qurilma",
+            "price": 1700000,
+            "count": "1 dona"
+          },
+          {
+            "name": "Tizim va qurilma o'rnatish, sozlash",
+            "price": 1800000,
+            "count": "1 marta"
+          },
+          {
+            "name": "Abonent to'lovi (1 - 10)",
+            "price": 200000,
+            "count": "1 oylik"
+          }
+        ],
+        "totalPrice": 3700000
+      },
+      {
+        "name": "Standard Paket",
+        "products": [
+          {
+            "name": "Taskie qurilma",
+            "price": 1700000,
+            "count": "1 dona"
+          },
+          {
+            "name": "Tizim va qurilma o'rnatish, sozlash",
+            "price": 1800000,
+            "count": "1 marta"
+          },
+          {
+            "name": "Abonent to'lovi (11 - 20)",
+            "price": 380000,
+            "count": "1 oylik"
+          },
+          {
+            "name": "Qo'shimcha qurilma o'rnatish va sozlash",
+            "price": 300000,
+            "count": "1 dona"
+          }
+        ],
+        "totalPrice": 4180000
+      },
+      {
+        "name": "Premium Paket",
+        "products": [
+          {
+            "name": "Taskie qurilma",
+            "price": 1700000,
+            "count": "1 dona"
+          },
+          {
+            "name": "Tizim va qurilma o'rnatish, sozlash",
+            "price": 1800000,
+            "count": "1 marta"
+          },
+          {
+            "name": "Abonent to'lovi (31 - 50)",
+            "price": 750000,
+            "count": "1 oylik"
+          },
+          {
+            "name": "Taskie da GPS moduli",
+            "price": 5000,
+            "count": "10 dona"
+          }
+        ],
+        "totalPrice": 4300000
+      },
+      {
+        "name": "Enterprise Paket",
+        "products": [],
+        "totalPrice": 0
+      }
+    ]
+  },
+  "faceId": {
+    "site": {
+      "title": "Face ID - shaxsiy identifikatsiya qilishning eng zamonaviy va qulay usuli",
+      "description": "Face ID - shaxsiy identifikatsiya qilishning eng zamonaviy va qulay usullaridan biri. Bu korxona xodimlariga ma'lum bir hududga kirishga ruxsat berilgan shaxsni tanib olish imkonini beradi va ma'lumotlar bazasida bo'lmagan kishining korxonangizga kirishiga yo'l qo'ymaydi. Ushbu texnologiya himoyalangan hududning xavfsizligini ta'minlashda barcha tomonlarning qulayligini ta'minlashga yordam beradi."
+    },
+    "title": "Face ID",
+    "description": "Face ID - shaxsiy identifikatsiya qilishning eng zamonaviy va qulay usullaridan biri. Bu korxona xodimlariga ma'lum bir hududga kirishga ruxsat berilgan shaxsni tanib olish imkonini beradi va ma'lumotlar bazasida bo'lmagan kishining korxonangizga kirishiga yo'l qo'ymaydi. Ushbu texnologiya himoyalangan hududning xavfsizligini ta'minlashda barcha tomonlarning qulayligini ta'minlashga yordam beradi.",
+    "order": "Buyurtma berish",
+    "solutions": {
+      "title": "Yechimlar",
+      "items": [
+        "Yuzni tanishdan foydalangan holda hududga kirish",
+        "Avtomatlashtirilgan ish joyidan kirish huquqlarini boshqarish",
+        "SMS va elektron pochta xabarlarini sozlash",
+        "Hisobotlar, shu jumladan ish vaqtini kuzatish",
+        "Uchinchi tomonning avtomatlashtirilgan boshqaruvi",
+        "Xavfsizlik tizimi"
+      ]
+    },
+    "howItWorks": {
+      "title": "Face ID qanday ishlaydi",
+      "steps": [
+        {
+          "title": "Hududga kirish",
+          "steps": [
+            {
+              "title": "Terminalga Yaqinlashing",
+              "content": "Kirish joyiga kelganingizda, Face ID terminaliga yaqinlashing."
+            },
+            {
+              "title": "Yuzni Aniqlash",
+              "content": "Kamera yuzingizni tez va aniq aniqlaydi."
+            },
+            {
+              "title": "Yorug'lik va Pozitsiya",
+              "content": "Yaxshi yoritilgan joyda turing va yuzingiz to'g'ri joylashganligiga ishonch hosil qiling."
+            },
+            {
+              "title": "Kirishingiz Mumkin",
+              "content": "Agar ma'lumotlar bazasida bo'lsangiz, darhol kirishga ruxsat beriladi. Aks holda, pozitsiyangizni tekshirib, qayta urinib ko'ring."
+            }
+          ]
+        },
+        {
+          "title": "Nega Face ID",
+          "benefits": [
+            {
+              "title": "Xavfsizlik",
+              "content": "Biometrik xususiyatlar boshqa shaxsga o'tkazilmaydi, shuning uchun ruxsatsiz kirishning oldi olinadi."
+            },
+            {
+              "title": "Gigiena",
+              "content": "Face ID jismoniy aloqani talab qilmaydi, bu esa qo'shimcha xavflarni kamaytiradi."
+            },
+            {
+              "title": "Tezlik",
+              "content": "Yuzni aniqlash bir soniyadan kam vaqt oladi, bu esa navbatlarni kamaytirib, samaradorlikni oshiradi."
+            },
+            {
+              "title": "Oson o'rnatish",
+              "content": "Face ID tizimlarini o'rnatish tez va qulay bo'lib, boshqa an'anaviy boshqaruv tizimlariga o'xshash darajada qulaydir."
+            }
+          ]
+        }
+      ]
+    },
+    "features": {
+      "title": "Imkoniyatlar",
+      "items": [
+        {
+          "key": "security",
+          "title": "Xavfsizlik",
+          "content": "Face ID texnologiyasi bilan sizning xavfsizligingiz maksimal darajada ta'minlanadi. Biometrik xususiyatlar boshqa shaxsga o'tkazilmaydi, bu esa ruxsatsiz kirishni imkonsiz qiladi. Ma'lumotlar bazasida bo'lmagan shaxslar himoyalangan hududga kira olmaydi, bu esa kirishni boshqarishni yanada samarali qiladi."
+        },
+        {
+          "key": "fast",
+          "title": "Tezlik va Qulaylik",
+          "content": "Yuzni aniqlash jarayoni bir soniyadan kam vaqt oladi, bu esa kirish jarayonini tez va samarali qiladi. Xodimlar uchun kirish kartalarini yoki parollarini topish zaruriyati yo'q. Yuzingizni terminalga qaratsangiz kifoya, va tizim sizni aniqlab, darhol kirishga ruxsat beradi."
+        },
+        {
+          "key": "easy",
+          "title": "Oson O'rnatish",
+          "content": "Ko'pgina zamonaviy texnologiyalar kabi, Face ID tizimlarini o'rnatish ham juda oson va tez amalga oshiriladi. Bu texnologiya ko'p vaqt talab qilmaydi va an'anaviy boshqaruv tizimlarini o'rnatishdan sezilarli farq qilmaydi. Shu sababli, korxonalaringizda Face ID texnologiyasini joriy etish juda qulaydir."
+        },
+        {
+          "key": "progress",
+          "title": "Ish Samaradorligini Oshirish",
+          "content": "Face ID texnologiyasi yordamida korxonangizda vaqtni tejashingiz mumkin. Kirish kartalari yoki parollari bilan bog'liq muammolarni unutishingiz mumkin. Shaxsiy identifikatsiya bir soniyada amalga oshiriladi, bu esa navbatlarni kamaytirib, ish jarayonini sezilarli darajada tezlashtiradi."
+        },
+        {
+          "key": "globe",
+          "title": "Key Qamrovli Qo'llanishi",
+          "content": "Face ID texnologiyasi nafaqat kirish boshqaruvi, balki boshqa ko'plab sohalarda ham qo'llanilishi mumkin. Masalan, xodimlarning ish vaqtini nazorat qilish, maxsus ruxsatnoma talab qilinadigan hududlarga kirishni boshqarish va boshqa ko'plab amaliyotlar. Bu texnologiya bilan siz korxonalaringiz xavfsizligi va samaradorligini yangi darajaga olib chiqishingiz mumkin."
+        },
+        {
+          "key": "monitoring",
+          "title": "Monitoring va Hisobot",
+          "content": "Face ID tizimlari xodimlar kirish va chiqish vaqtlarini avtomatik ravishda qayd etadi. Bu ma'lumotlar real vaqt rejimida monitoring qilinishi va hisobotlar shaklida taqdim etilishi mumkin. Bu esa menejmentga xodimlarning ish vaqti va faoliyati haqida aniq ma'lumot olish imkonini beradi."
+        }
+      ]
+    }
   }
 }
