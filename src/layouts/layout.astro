@@ -4,6 +4,7 @@ import i18next, { t, changeLanguage } from "i18next";
 import { HeadHrefLangs } from "astro-i18next/components";
 import Navbar from "../components/navbar/Navbar.astro";
 import Footer from "../components/footer/Footer.astro";
+import Modal from "../components/core/Modal.astro";
 changeLanguage("uz");
 ---
 
@@ -30,5 +31,6 @@ changeLanguage("uz");
 <Navbar />
 <slot />
 <Footer />
+<Modal />
 </body>
 </html>

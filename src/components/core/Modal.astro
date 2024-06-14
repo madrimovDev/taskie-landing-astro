@@ -1,0 +1,72 @@
+---
+import X from "astro-heroicons/solid/XMark.astro";
+---
+
+<div id="modal" data-hidden="true"
+     class="group data-[hidden='true']:opacity-0 data-[hidden='true']:invisible data-[hidden='true']:delay-150 transition-all fixed inset-0 z-[9999] bg-black/30 backdrop-blur-xl">
+  <div
+    id="modal-content"
+    class="group-data-[hidden='true']:-translate-y-full delay-150 group-data-[hidden='true']:delay-0 group-data-[hidden='true']:opacity-0 scale-100 transition-all w-[calc(100%-32px)] sm:w-full max-w-sm absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 rounded-md bg-white">
+    <button id="close-modal" class="absolute top-4 right-4">
+      <X class="size-5" />
+    </button>
+    <div>
+      <h4>Hello world</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur debitis impedit laborum laudantium
+        obcaecati perferendis sapiente, tempore vitae. Ad atque dolores esse illum molestias nisi perferendis
+        repellendus sed sunt velit.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById("modal");
+  const modalContent = document.getElementById("modal-content");
+  const modalTriggers = document.querySelectorAll("[data-modal-trigger]");
+  const modalCloseBtn = document.getElementById("close-modal");
+  const html = document.documentElement;
+  const body = document.body;
+  const navbar = document.getElementById("navbar");
+
+  function toggleScroll(hide) {
+    if (hide) {
+      html.style.overflow = "hidden";
+      body.style.paddingRight = "15px";
+      navbar.style.paddingRight = "15px";
+    } else {
+      html.style.overflow = "";
+      body.style.paddingRight = "";
+      navbar.style.paddingRight = "";
+    }
+  }
+
+  function openModal() {
+    modal.setAttribute("data-hidden", "false");
+    const match = window.matchMedia("(max-width: 768px)");
+    console.log(match)
+    if (!match.matches) {
+      toggleScroll(true);
+    }
+  }
+
+  function hideModal() {
+    modal.setAttribute("data-hidden", "true");
+    toggleScroll(false);
+  }
+
+  modalCloseBtn.onclick = hideModal;
+  modal.onclick = (e) => {
+    if (!modalContent.contains(e.target as Node)) {
+      hideModal();
+    }
+  };
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      hideModal();
+    }
+  });
+  modalTriggers.forEach(trigger => {
+    trigger.addEventListener("click", openModal);
+  });
+
+</script>

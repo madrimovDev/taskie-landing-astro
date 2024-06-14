@@ -80,7 +80,9 @@ const navButtons = t("menu.buttons", { returnObjects: true }) as NavItem[];
         {
           navButtons.map((item) => {
             return (
-              <button class="bg-primary px-4 py-2 md:px-8 md:py-4 rounded-md text-white font-bold text-sm md:text-lg">
+              <button id="contact"
+                      data-modal-trigger
+                      class="bg-primary px-4 py-2 md:px-8 md:py-4 rounded-md text-white font-bold text-sm md:text-lg">
                 {item.name}
               </button>
             );
@@ -98,6 +100,7 @@ const navButtons = t("menu.buttons", { returnObjects: true }) as NavItem[];
   const header = document.getElementById("header") as HTMLElement;
   const navMenu = document.getElementById("navbar-menu");
   const navToggle = document.getElementById("navbar-toggle");
+
   let navbarHeight = navbar.getBoundingClientRect().height;
   header.style.paddingTop = navbarHeight + "px";
   gsap.from(navbar, {

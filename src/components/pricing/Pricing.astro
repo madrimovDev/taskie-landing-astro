@@ -97,7 +97,7 @@ const plans = t("plans.items", {
       opacity: 0,
       scale: 0.8,
       ease: "power2.out",
-      duration: 1
+      duration: 0.5
     }
   });
   timeline.from(title, {
@@ -107,13 +107,13 @@ const plans = t("plans.items", {
     timeline.from(item, {
       y: 20 * index, // Adding some vertical offset for each item
       rotation: index % 2 === 0 ? 5 : -5 // Alternate rotation for each item
-    }, `-=${index * 0.3}`); // Staggering the start time of each animation
+    }, `-=0.5}`); // Staggering the start time of each animation
   });
 
   ScrollTrigger.create({
     trigger: pricing,
     animation: timeline,
-    start: "top 50%", // Start animation when the trigger is 80% from the top of the viewport
+    start: "top 20%", // Start animation when the trigger is 80% from the top of the viewport
     end: "bottom 90%" // End animation when the trigger is 20% from the bottom of the viewport
   });
 </script>
