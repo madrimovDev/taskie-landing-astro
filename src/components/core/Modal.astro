@@ -20,15 +20,15 @@ import X from "astro-heroicons/solid/XMark.astro";
 </div>
 
 <script>
-  const modal = document.getElementById("modal");
-  const modalContent = document.getElementById("modal-content");
-  const modalTriggers = document.querySelectorAll("[data-modal-trigger]");
-  const modalCloseBtn = document.getElementById("close-modal");
+  const modal = document.getElementById("modal") as HTMLDivElement;
+  const modalContent = document.getElementById("modal-content") as HTMLDivElement;
+  const modalTriggers = document.querySelectorAll("[data-modal-trigger]") as NodeListOf<HTMLElement>;
+  const modalCloseBtn = document.getElementById("close-modal") as HTMLButtonElement;
   const html = document.documentElement;
   const body = document.body;
-  const navbar = document.getElementById("navbar");
+  const navbar = document.getElementById("navbar") as HTMLDivElement;
 
-  function toggleScroll(hide) {
+  function toggleScroll(hide: boolean) {
     if (hide) {
       html.style.overflow = "hidden";
       body.style.paddingRight = "15px";
@@ -43,7 +43,7 @@ import X from "astro-heroicons/solid/XMark.astro";
   function openModal() {
     modal.setAttribute("data-hidden", "false");
     const match = window.matchMedia("(max-width: 768px)");
-    console.log(match)
+    console.log(match);
     if (!match.matches) {
       toggleScroll(true);
     }
