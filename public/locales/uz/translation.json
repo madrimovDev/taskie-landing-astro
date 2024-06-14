@@ -5,6 +5,10 @@
   "menu": {
     "navigations": [
       {
+        "name": "Bosh sahifa",
+        "href": "/"
+      },
+      {
         "name": "Kompaniya haqida",
         "href": "https://mbos.uz"
       },
@@ -35,7 +39,7 @@
   "tryIt": "Sinab Ko'rish",
   "watchVideo": "Videoni ko'rish",
   "learnMore": "Ko'proq bilish",
-  "buy": "Sotib olish",
+  "buy": "Hisoblash",
   "features": {
     "title": "Imkoniyatlar",
     "items": [
@@ -70,17 +74,20 @@
           {
             "name": "Taskie qurilma",
             "price": 1700000,
-            "count": "1 dona"
+            "count": "1 dona",
+            "key": 0
           },
           {
             "name": "Tizim va qurilma o'rnatish, sozlash",
             "price": 1800000,
-            "count": "1 marta"
+            "count": "1 marta",
+            "key": 1
           },
           {
             "name": "Abonent to'lovi (1 - 10)",
             "price": 200000,
-            "count": "1 oylik"
+            "count": "1 oylik",
+            "key": 3
           }
         ],
         "totalPrice": 3700000
@@ -91,22 +98,26 @@
           {
             "name": "Taskie qurilma",
             "price": 1700000,
-            "count": "1 dona"
+            "count": "1 dona",
+            "key": 0
           },
           {
             "name": "Tizim va qurilma o'rnatish, sozlash",
             "price": 1800000,
-            "count": "1 marta"
+            "count": "1 marta",
+            "key": 1
           },
           {
             "name": "Abonent to'lovi (11 - 20)",
             "price": 380000,
-            "count": "1 oylik"
+            "count": "1 oylik",
+            "key": 4
           },
           {
             "name": "Qo'shimcha qurilma o'rnatish va sozlash",
             "price": 300000,
-            "count": "1 dona"
+            "count": "1 dona",
+            "key": 2
           }
         ],
         "totalPrice": 4180000
@@ -117,22 +128,26 @@
           {
             "name": "Taskie qurilma",
             "price": 1700000,
-            "count": "1 dona"
+            "count": "1 dona",
+            "key": 0
           },
           {
             "name": "Tizim va qurilma o'rnatish, sozlash",
             "price": 1800000,
-            "count": "1 marta"
+            "count": "1 marta",
+            "key": 1
           },
           {
             "name": "Abonent to'lovi (31 - 50)",
             "price": 750000,
-            "count": "1 oylik"
+            "count": "1 oylik",
+            "key": 6
           },
           {
             "name": "Taskie da GPS moduli",
             "price": 5000,
-            "count": "10 dona"
+            "count": "10 dona",
+            "key": 10
           }
         ],
         "totalPrice": 4300000
@@ -141,6 +156,77 @@
         "name": "Enterprise Paket",
         "products": [],
         "totalPrice": 0
+      }
+    ],
+    "full": [
+      {
+        "name": "Taskie qurilma",
+        "price": 1700000,
+        "count": "1 dona",
+        "key": 0
+      },
+      {
+        "name": "Tizim va qurilma o'rnatish, sozlash",
+        "price": 1800000,
+        "count": "1 marta",
+        "key": 1
+      },
+      {
+        "name": "Shu tashkilotga qo'shimcha qurilma o'rnatish va sozlash",
+        "price": 300000,
+        "count": "1 dona",
+        "key": 2
+      },
+      {
+        "name": "Abonent to'lovi (1 - 10)",
+        "price": 200000,
+        "count": "1 oylik",
+        "key": 3
+      },
+      {
+        "name": "Abonent to'lovi (11 - 20)",
+        "price": 380000,
+        "count": "1 oylik",
+        "key": 4
+      },
+      {
+        "name": "Abonent to'lovi (21 - 30)",
+        "price": 540000,
+        "count": "1 oylik",
+        "key": 5
+      },
+      {
+        "name": "Abonent to'lovi (31 - 50)",
+        "price": 750000,
+        "count": "1 oylik",
+        "key": 6
+      },
+      {
+        "name": "Abonent to'lovi (xodimlar soni 51 dan 70 gacha bo'lsa, xar bir qo'shimcha xodim uchun)",
+        "price": 750000,
+        "additionalPrice": 12000,
+        "count": "1 oylik",
+        "key": 7
+      },
+      {
+        "name": "Abonent to'lovi (xodimlar soni 71 dan 100 gacha bo'lsa, xar bir qo'shimcha xodim uchun)",
+        "price": 750000,
+        "additionalPrice": 12000,
+        "count": "1 oylik",
+        "key": 8
+      },
+      {
+        "name": "Abonent to'lovi (xodimlar soni 100 dan 200 gacha bo'lsa, xar bir qo'shimcha xodim uchun)",
+        "price": 750000,
+        "additionalPrice": 10000,
+        "count": "1 oylik",
+        "key": 9
+      },
+      {
+        "name": "Taskie da GPS moduli (xar bir xodim uchun, qo'shimcha)",
+        "price": 5000,
+        "count": "1 dona",
+        "key": 10
       }
     ]
   },

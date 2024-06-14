@@ -25,10 +25,10 @@ const plans = t("plans.items", {
           return (
             <div
               data-gsap="pricing-item"
-              class="w-full shadow-md py-8 px-4 flex flex-col gap-4 items-center rounded-md border hover:border-primary overflow-hidden relative"
+              class="w-full shadow-md py-8 px-2 md:px-4 flex flex-col gap-4 items-center rounded-md border hover:border-primary overflow-hidden relative"
               class:list={[{
                 "border-2 border-primary": index === 1,
-                "border-transparent": index !== 1,
+                "border-transparent": index !== 1
               }]}
             >
               <div
@@ -49,7 +49,7 @@ const plans = t("plans.items", {
                 {
                   plan.products.map(product => {
                     return (
-                      <li class="flex items-center gap-2 text-lg">
+                      <li class="flex items-center gap-2 md:text-lg">
                         <span class="">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="size-5 text-primary">
@@ -76,7 +76,8 @@ const plans = t("plans.items", {
                 minimumFractionDigits: 0
               }).format(plan.totalPrice)}
               </h4>
-              <button class="bg-primary w-full py-4 text-lg font-bold text-white rounded-md">{t("buy")}</button>
+              <a href={`/pricing/${plan.name}`}
+                 class="inline-block text-center bg-primary w-full py-4 text-lg font-bold text-white rounded-md">{t("buy")}</a>
             </div>
           );
         })

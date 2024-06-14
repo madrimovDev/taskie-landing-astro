@@ -1,0 +1,199 @@
+---
+import Layout from "../../layouts/layout.astro";
+import { t } from "i18next";
+
+export const getStaticPaths = () => {
+  const plans = t("plans.items", {
+    returnObjects: true
+  }) as any[];
+  return plans.map(p => {
+    return {
+      params: { plan: p.name }
+    };
+  });
+};
+
+interface FullPlan {
+  "name": string,
+  "price": number,
+  "additionalPrice"?: number,
+  "count": string,
+  "key": number
+}
+
+interface Plan {
+  "name": string,
+  "products": {
+    "name": string,
+    "price": number,
+    "count": string,
+    "key": number
+  }[],
+  "totalPrice": number
+}
+
+const formatNumber = (num: number) => new Intl.NumberFormat("uz", {
+  style: "currency",
+  currency: "UZS",
+  maximumFractionDigits: 0
+}).format(num);
+
+const fullPlan = t("plans.full", { returnObjects: true }) as FullPlan[];
+const plans = t("plans.items", {
+  returnObjects: true
+}) as Plan[];
+
+const planname = Astro.params.plan;
+const selectedPlan = plans.find(p => p.name === planname);
+const checkBoxKeys = [3, 4, 5, 6, 7, 8, 9];
+---
+
+<Layout>
+  <header id="header">
+    <div class="container my-12">
+      <h1>Pricing</h1>
+      <table class="table-auto min-w-full divide-y divide-gray-200 rounded-md overflow-hidden">
+        <thead>
+        <tr class="bg-primary text-white">
+          <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">#</th>
+          <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Xizmat turi</th>
+          <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Narxi</th>
+          <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Tanlash</th>
+        </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+        {fullPlan.map((item, index) => (
+          <tr
+            class={index % 2 === 0 ? "bg-gray-50 hover:bg-primary-100/10 transition-all" : "bg-white hover:bg-primary-100/10 transition-all"}>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{index + 1}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.name}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {formatNumber(item.price)} {item.additionalPrice ? `/ ${formatNumber(item.additionalPrice)}*` : ""}
+            </td>
+            <td data-key={item.key}>
+              {
+                checkBoxKeys.includes(item.key) ?
+                  <div class="flex gap-4">
+                    <input name={`${item.key}`} type="checkbox"
+                           checked={selectedPlan && !!selectedPlan.products.find(p => p.key === item.key)} />
+                    {item.additionalPrice &&
+                      <input name={`${item.key}-additional`} min="0" type="number" class="border px-2 py-1"
+                             value={0} />
+                    }
+                  </div> :
+                  <input
+                    disabled={item.key === 1}
+                    data-key={item.key}
+                    type="number"
+                    min="0"
+                    class="border px-2 py-1"
+                    placeholder="0"
+                    value={selectedPlan?.products.find(p => p.key === item.key) ? 1 : 0}
+                    name={item.key === 0 ? "key-0" : (item.key === 1 ? "key-1" : "")}
+                  />
+              }
+            </td>
+          </tr>
+        ))}
+        </tbody>
+        <tfoot>
+        <tr>
+          <th></th>
+          <th></th>
+          <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Umumiy</th>
+          <th data-output>0</th>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+  </header>
+</Layout>
+
+<script define:vars={{ plans, fullPlan }} is:inline>
+  const checkboxes = document.querySelectorAll("#header input[type='checkbox']");
+  let selectedCheckboxKey;
+  let totalPrice = 0;
+  checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener("change", (e) => {
+      checkboxes.forEach((cb) => {
+        cb.checked = false;
+        const numericInput = document.querySelector(`input[name='${cb.name}-additional']`);
+        if (numericInput) {
+          numericInput.value = 0;
+        }
+      });
+
+      if (e.target.name === selectedCheckboxKey) {
+        e.currentTarget.checked = false;
+        selectedCheckboxKey = undefined;
+        updateTotalPrice();
+      } else {
+        e.currentTarget.checked = true;
+        selectedCheckboxKey = e.target.name;
+        updateTotalPrice();
+      }
+
+    });
+  });
+
+  const inputNumerics = document.querySelectorAll("#header input[type='number']");
+  const output = document.querySelector("[data-output]");
+
+  function updateOutput(sum) {
+    output.textContent = new Intl.NumberFormat("uz", {
+      style: "currency",
+      currency: "UZS",
+      minimumFractionDigits: 0
+    }).format(sum);
+  }
+
+  function calculatePrice(key, count = 1) {
+    const _plan = fullPlan.find(p => p.key === Number(key));
+    if (!_plan) return 0;
+    const price = _plan.additionalPrice ? _plan.price : _plan.price * count;
+    const additionalPrice = _plan.additionalPrice ? _plan.additionalPrice * count : 0;
+    return price + additionalPrice;
+  }
+
+  function updateTotalPrice() {
+    totalPrice = 0;
+    checkboxes.forEach(ch => {
+      if (ch.checked) {
+        selectedCheckboxKey = ch.name;
+      }
+    });
+    if (selectedCheckboxKey) {
+      const checkbox = document.querySelector(`input[name='${selectedCheckboxKey}']`);
+      if (checkbox.checked) {
+        const numericInput = document.querySelector(`input[name='${selectedCheckboxKey}-additional']`);
+        const count = numericInput ? Number(numericInput.value) : 1;
+        totalPrice += calculatePrice(selectedCheckboxKey, count);
+      }
+    }
+    inputNumerics.forEach((input) => {
+      if (!input.name.includes("-additional")) {
+        const key = input.getAttribute("data-key");
+        const count = Number(input.value);
+        if (count > 0) {
+          totalPrice += calculatePrice(key, count);
+        }
+      }
+    });
+    updateOutput(totalPrice);
+  }
+
+  inputNumerics.forEach(item => {
+    item.addEventListener("change", (e) => {
+      const target = e.target;
+      if (target.name === "key-0") {
+        const key1Input = document.querySelector("input[name='key-1']");
+        if (key1Input) {
+          key1Input.value = target.value;
+        }
+      }
+      updateTotalPrice();
+    });
+  });
+
+  updateTotalPrice();
+</script>

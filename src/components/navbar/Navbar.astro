@@ -2,6 +2,7 @@
 import { t } from "i18next";
 import LangSelector from "../core/LangSelector.astro";
 import ExternalLink from "astro-heroicons/solid/ArrowTopRightOnSquare.astro";
+import isWithHttpHref from "../../utils/isUrl";
 
 type NavItem = {
   name: string;
@@ -18,7 +19,7 @@ const navButtons = t("menu.buttons", { returnObjects: true }) as NavItem[];
   class="fixed top-0 inset-x-0 w-full z-50 transition-colors backdrop-navbar"
 >
   <nav class="h-20 md:h-28 container flex items-center relative">
-    <div class="flex-1">
+    <div class="flex-none mr-12">
       <a href="/">
         <img
           alt="taskie"
@@ -30,19 +31,18 @@ const navButtons = t("menu.buttons", { returnObjects: true }) as NavItem[];
     </div>
     <div
       id="navbar-menu"
-      class="transition-all z-40 lg:z-auto ease-in grow absolute lg:static bg-slate-100 lg:bg-transparent top-full inset-x-0 flex justify-center overflow-hidden md:overflow-auto  lg:h-full items-center">
+      class="transition-all z-40 lg:z-auto ease-in grow absolute lg:static bg-slate-100 lg:bg-transparent top-full inset-x-0 flex  overflow-hidden md:overflow-auto  lg:h-full items-center">
       <ul
-        class="transition-all flex flex-col lg:flex-row gap-6 py-10 px-4 lg:py-0 items-start w-full lg:w-auto lg:gap-10 text-xl lg:text-lg font-semibold text-stone-700 h-[300px] lg:h-auto">
+        class="transition-all flex flex-col lg:flex-row gap-6 py-10 px-4 lg:py-0 items-start w-full lg:w-auto lg:gap-10 text-xl lg:text-base font-semibold text-stone-700 h-[300px] lg:h-auto">
         {
           navigations.map((item) => {
-            const isWithHttp = item.href.split("/").length > 1;
+            const isWithHttp = isWithHttpHref(item.href);
             if (item.href === "face-id") {
               return (
                 <li>
                   <a
                     data-link={item.name}
                     href={"/" + item.href}
-                    target={isWithHttp ? "_blank" : "_self"}
                     class="flex items-center gap-2 font-bold text-primary hover:text-primary transition-colors"
                   >
                     {item.name}
@@ -53,7 +53,7 @@ const navButtons = t("menu.buttons", { returnObjects: true }) as NavItem[];
               <li>
                 <a
                   data-link={item.name}
-                  href={"/" + item.href}
+                  href={"/" + item.href.split("/").join("")}
                   target={isWithHttp ? "_blank" : "_self"}
                   class="flex items-center gap-2 hover:text-primary transition-colors"
                 >
