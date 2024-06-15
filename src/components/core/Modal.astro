@@ -6,7 +6,7 @@ import X from "astro-heroicons/solid/XMark.astro";
      class="group data-[hidden='true']:opacity-0 data-[hidden='true']:invisible data-[hidden='true']:delay-150 transition-all fixed inset-0 z-[9999] bg-black/30 backdrop-blur-xl">
   <div
     id="modal-content"
-    class="group-data-[hidden='true']:-translate-y-full delay-150 group-data-[hidden='true']:delay-0 group-data-[hidden='true']:opacity-0 scale-100 transition-all w-[calc(100%-32px)] sm:w-full max-w-sm absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 rounded-md bg-white">
+    class="group-data-[hidden='true']:-translate-y-full delay-150 group-data-[hidden='true']:delay-0 group-data-[hidden='true']:opacity-0 scale-100 transition-all w-[calc(100%-32px)] sm:w-full max-w-lg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 rounded-md bg-white">
     <button id="close-modal" class="absolute top-4 right-4">
       <X class="size-5" />
     </button>
@@ -43,7 +43,6 @@ import X from "astro-heroicons/solid/XMark.astro";
   function openModal() {
     modal.setAttribute("data-hidden", "false");
     const match = window.matchMedia("(max-width: 768px)");
-    console.log(match);
     if (!match.matches) {
       toggleScroll(true);
     }
@@ -51,7 +50,7 @@ import X from "astro-heroicons/solid/XMark.astro";
 
   function hideModal() {
     modal.setAttribute("data-hidden", "true");
-    toggleScroll(false);
+    setTimeout(toggleScroll, 150, false)
   }
 
   modalCloseBtn.onclick = hideModal;

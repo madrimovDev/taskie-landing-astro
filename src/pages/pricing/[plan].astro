@@ -14,22 +14,22 @@ export const getStaticPaths = () => {
 };
 
 interface FullPlan {
-  "name": string,
-  "price": number,
-  "additionalPrice"?: number,
-  "count": string,
-  "key": number
+  name: string,
+  price: number,
+  additionalPrice?: number,
+  count: string,
+  key: number
 }
 
 interface Plan {
-  "name": string,
-  "products": {
-    "name": string,
-    "price": number,
-    "count": string,
-    "key": number
+  name: string,
+  products: {
+    name: string,
+    price: number,
+    count: string,
+    key: number
   }[],
-  "totalPrice": number
+  totalPrice: number
 }
 
 const formatNumber = (num: number) => new Intl.NumberFormat("uz", {
@@ -51,7 +51,7 @@ const checkBoxKeys = [3, 4, 5, 6, 7, 8, 9];
 <Layout>
   <header id="header">
     <div class="my-12">
-      <h1>Pricing</h1>
+      <h1 class="text-center text-5xl font-bold mb-12">Hisoblash</h1>
       <div class="container overflow-x-auto">
         <table class="table-auto min-w-full divide-y divide-gray-200 rounded-md overflow-hidden">
           <thead>
@@ -105,6 +105,12 @@ const checkBoxKeys = [3, 4, 5, 6, 7, 8, 9];
             <th data-output>0</th>
           </tr>
           </tfoot>
+          <caption class="caption-bottom py-4">
+            <button id="order-plan"
+                    class="bg-primary text-white font-bold text-lg px-8 py-4 rounded-md hover:bg-primary/80">Buyurtma
+              berish
+            </button>
+          </caption>
         </table>
       </div>
     </div>
@@ -113,6 +119,7 @@ const checkBoxKeys = [3, 4, 5, 6, 7, 8, 9];
 
 <script define:vars={{ plans, fullPlan }} is:inline>
   const checkboxes = document.querySelectorAll("#header input[type='checkbox']");
+  const orderBtn = document.querySelector("#order-plan");
   let selectedCheckboxKey;
   let totalPrice = 0;
   checkboxes.forEach((checkbox) => {
@@ -198,4 +205,45 @@ const checkBoxKeys = [3, 4, 5, 6, 7, 8, 9];
   });
 
   updateTotalPrice();
+
+  orderBtn.addEventListener("click", () => {
+    const selectedPlans = [];
+
+    checkboxes.forEach(ch => {
+      if (ch.checked) {
+        const key = ch.name;
+        const numericInput = document.querySelector(`input[name='${key}-additional']`);
+        const count = numericInput ? Number(numericInput.value) : 1;
+        const plan = fullPlan.find(p => p.key === Number(key));
+        if (plan) {
+          selectedPlans.push({
+            name: plan.name,
+            price: plan.price,
+            additionalPrice: plan.additionalPrice,
+            count: count,
+            key: plan.key
+          });
+        }
+      }
+    });
+
+    inputNumerics.forEach(input => {
+      if (!input.name.includes("-additional")) {
+        const key = input.getAttribute("data-key");
+        const count = Number(input.value);
+        const plan = fullPlan.find(p => p.key === Number(key));
+        if (plan && count > 0) {
+          selectedPlans.push({
+            name: plan.name,
+            price: plan.price,
+            additionalPrice: plan.additionalPrice,
+            count: count,
+            key: plan.key
+          });
+        }
+      }
+    });
+
+    alert(JSON.stringify(selectedPlans));
+  });
 </script>
