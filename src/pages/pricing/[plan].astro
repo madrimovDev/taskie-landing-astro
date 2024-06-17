@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/layout.astro";
 import { t } from "i18next";
+import Modal from "../../components/core/Modal.astro";
 
 export const getStaticPaths = () => {
   const plans = t("plans.items", {
@@ -107,6 +108,7 @@ const checkBoxKeys = [3, 4, 5, 6, 7, 8, 9];
           </tfoot>
           <caption class="caption-bottom py-4">
             <button id="order-plan"
+                    data-modal-trigger="order-modal"
                     class="bg-primary text-white font-bold text-lg px-8 py-4 rounded-md hover:bg-primary/80">Buyurtma
               berish
             </button>
@@ -115,6 +117,10 @@ const checkBoxKeys = [3, 4, 5, 6, 7, 8, 9];
       </div>
     </div>
   </header>
+  <Modal id="order-modal" title="Order Modal">
+    <div id="order-output"></div>
+  </Modal>
+
 </Layout>
 
 <script define:vars={{ plans, fullPlan }} is:inline>
@@ -244,6 +250,54 @@ const checkBoxKeys = [3, 4, 5, 6, 7, 8, 9];
       }
     });
 
-    alert(JSON.stringify(selectedPlans));
+
+    const output = document.getElementById("order-output");
+    output.innerHTML = "";
+
+    let totalSum = 0;
+    selectedPlans.forEach(plan => {
+      const item = document.createElement("div");
+      item.className = "bg-white space-y-2 border p-2";
+
+      const name = document.createElement("div");
+      name.className = "flex justify-between";
+      name.innerHTML = `<span class="font-bold">Xizmat: </span> <span>${plan.name}</span>`;
+      item.appendChild(name);
+
+      const price = document.createElement("div");
+      price.className = "flex justify-between";
+      price.innerHTML = `<span class="font-bold">Narx:</span> <span>${plan.price}</span>`;
+      item.appendChild(price);
+
+      const additionalPrice = document.createElement("div");
+      additionalPrice.className = "flex justify-between";
+      additionalPrice.innerHTML = `<span class="font-bold">Qo'shimcha:</span> <span>${plan.additionalPrice ?? ""}</span>`;
+      item.appendChild(additionalPrice);
+
+      const count = document.createElement("div");
+      count.className = "flex justify-between";
+      count.innerHTML = `<span class="font-bold">Dona / Marta:</span> <span>${plan.count}</span>`;
+      item.appendChild(count);
+
+      const subtotal = plan.additionalPrice ? plan.price + (plan.additionalPrice * plan.count || 1) : plan.price * plan.count;
+      totalSum += subtotal;
+
+      const subtotalDiv = document.createElement("div");
+      subtotalDiv.className = "flex justify-between border-t pt-2";
+      subtotalDiv.innerHTML = `<span class="font-bold">Xizmat narxi:</span> <span>${subtotal.toFixed(2)}</span>`;
+      item.appendChild(subtotalDiv);
+
+      output.appendChild(item);
+    });
+
+    const totalDiv = document.createElement("div");
+    totalDiv.className = "bg-white rounded space-y-2 mt-4";
+
+    const totalSumDiv = document.createElement("div");
+    totalSumDiv.className = "flex justify-between text-lg";
+    totalSumDiv.innerHTML = `<span class="font-bold">Umumiy narx:</span> <span>${totalSum.toFixed(2)}</span>`;
+    totalDiv.appendChild(totalSumDiv);
+
+    output.appendChild(totalDiv);
   });
 </script>

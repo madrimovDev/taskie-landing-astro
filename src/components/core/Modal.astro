@@ -1,26 +1,31 @@
 ---
 import X from "astro-heroicons/solid/XMark.astro";
+interface Props {
+  id: string | number;
+  title: string
+}
+const { id, title } = Astro.props;
 ---
 
-<div id="modal" data-hidden="true"
-     class="group data-[hidden='true']:opacity-0 data-[hidden='true']:invisible data-[hidden='true']:delay-150 transition-all fixed inset-0 z-[9999] bg-black/30 backdrop-blur-xl">
+<div id="modal" data-modal={id} data-hidden="true"
+     class="group data-[hidden='true']:opacity-0 data-[hidden='true']:invisible data-[hidden='true']:delay-150 transition-all fixed inset-0 z-[9999] bg-black/30 backdrop-blur-xl overflow-hidden">
   <div
     id="modal-content"
-    class="group-data-[hidden='true']:-translate-y-full delay-150 group-data-[hidden='true']:delay-0 group-data-[hidden='true']:opacity-0 scale-100 transition-all w-[calc(100%-32px)] sm:w-full max-w-lg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 rounded-md bg-white">
-    <button id="close-modal" class="absolute top-4 right-4">
-      <X class="size-5" />
-    </button>
-    <div>
-      <h4>Hello world</h4>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur debitis impedit laborum laudantium
-        obcaecati perferendis sapiente, tempore vitae. Ad atque dolores esse illum molestias nisi perferendis
-        repellendus sed sunt velit.</p>
+    class="group-data-[hidden='true']:-translate-y-full max-h-[calc(100vh-30px)] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-y-auto delay-150 group-data-[hidden='true']:delay-0 group-data-[hidden='true']:opacity-0 scale-100 transition-all w-[calc(100%-32px)] sm:w-full max-w-screen-lg rounded-md bg-white overflow-auto">
+    <div class="sticky top-0 inset-x-0 p-4 flex justify-between items-center bg-white shadow">
+      <h4>{title}</h4>
+      <button id="close-modal" class="">
+        <X class="size-5" />
+      </button>
+    </div>
+    <div class="p-4">
+      <slot />
     </div>
   </div>
 </div>
 
 <script>
-  const modal = document.getElementById("modal") as HTMLDivElement;
+  const modals = document.querySelectorAll("#modal") as NodeListOf<HTMLDivElement>;
   const modalContent = document.getElementById("modal-content") as HTMLDivElement;
   const modalTriggers = document.querySelectorAll("[data-modal-trigger]") as NodeListOf<HTMLElement>;
   const modalCloseBtn = document.getElementById("close-modal") as HTMLButtonElement;
@@ -30,9 +35,12 @@ import X from "astro-heroicons/solid/XMark.astro";
 
   function toggleScroll(hide: boolean) {
     if (hide) {
+      const match = window.matchMedia("(max-width: 768px)");
+      if (!match.matches) {
+        body.style.paddingRight = "15px";
+        navbar.style.paddingRight = "15px";
+      }
       html.style.overflow = "hidden";
-      body.style.paddingRight = "15px";
-      navbar.style.paddingRight = "15px";
     } else {
       html.style.overflow = "";
       body.style.paddingRight = "";
@@ -40,32 +48,58 @@ import X from "astro-heroicons/solid/XMark.astro";
     }
   }
 
-  function openModal() {
-    modal.setAttribute("data-hidden", "false");
-    const match = window.matchMedia("(max-width: 768px)");
-    if (!match.matches) {
-      toggleScroll(true);
-    }
+  function openModal(id: string | number) {
+    modals.forEach(modal => {
+      if (modal.getAttribute("data-modal") === id) {
+        modal.setAttribute("data-hidden", "false");
+      }
+    });
+
+    toggleScroll(true);
+
   }
 
-  function hideModal() {
-    modal.setAttribute("data-hidden", "true");
-    setTimeout(toggleScroll, 150, false)
+  function hideModal(id: string | number) {
+    modals.forEach(modal => {
+      if (modal.getAttribute("data-modal") === id) {
+        modal.setAttribute("data-hidden", "true");
+      }
+    });
+    setTimeout(toggleScroll, 150, false);
   }
 
-  modalCloseBtn.onclick = hideModal;
-  modal.onclick = (e) => {
-    if (!modalContent.contains(e.target as Node)) {
-      hideModal();
-    }
+  modalCloseBtn.onclick = () => {
+    modals.forEach(modal => {
+      if (modal.getAttribute("data-hidden") === "false") {
+        hideModal(modal.getAttribute("data-modal") ?? "");
+      }
+    });
   };
+
+  modals.forEach((modal => {
+    modal.onclick = (e) => {
+      const target = e.target as HTMLDivElement;
+      if (!modalContent.contains(e.target as Node)) {
+        hideModal(target.getAttribute("data-modal") ?? "");
+      }
+    };
+  }));
+
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-      hideModal();
+      modals.forEach(modal => {
+        if (modal.getAttribute("data-hidden") === "false") {
+          hideModal(modal.getAttribute("data-modal") ?? "");
+        }
+      });
     }
   });
+
   modalTriggers.forEach(trigger => {
-    trigger.addEventListener("click", openModal);
+    trigger.addEventListener("click", (e) => {
+      const target = e.currentTarget as HTMLElement;
+      openModal(target.getAttribute("data-modal-trigger") ?? "");
+    });
   });
 
 </script>
