@@ -34,7 +34,8 @@
   },
   "header": {
     "title": "Taskie - hodimlarni nazorat qilish",
-    "description": "Taskie - hodimlar bilan ishlash dasturiga xush kelibsiz. Bu dastur jamoangizning vazifalarni boshqarishni osonlashtiradi va ish samaradorligini oshiradi."
+    "description": "Taskie menejeri – Xodimlar kelib ketish vaqtini nazorat etishda samarali yechim bo’lib, bu ishni boshqarish uchun mo'ljallangan dasturiy yechim. Uning funksionalligi menejerga shaxsiylashtirilgan va guruhli vazifalarni taqsimlash, ularni bosqichlarga bo'lish va barcha belgilangan jarayonlarning bajarilishini nazorat qilish imkonini beradi.",
+    "img": "/images/1.png"
   },
   "tryIt": "Sinab Ko'rish",
   "watchVideo": "Videoni ko'rish",
@@ -44,16 +45,29 @@
     "title": "Imkoniyatlar",
     "items": [
       {
-        "title": "Vazifalarni boshqarish",
-        "details": "Vazifalarni boshqarish va ularga muddat belgilash, xodimlar o'rtasidagi vazifalarni taqsimlash."
+        "title": "Xodimlarni boshqarish va vazifalarni berish",
+        "details": "Har qanday kompaniya xodimlarining mahsuldorligi va unumdorligi to'g'ridan-to'g'ri sotilgan tovarlar va ko'rsatiladigan xizmatlar soniga, daromadga va kompaniyaning mashhurligining o'sishiga ta'sir qiladi.",
+        "img": "6.png"
       },
       {
-        "title": "Bildirishnomalar",
-        "details": "Vazifa muddatlari bilan bog'liq muammolarni oldini olish uchun eslatmalar va bildirishnomalar yuborish."
+        "title": "Xodimlarni kelib ketish vaqtini nazorat etish",
+        "details": "Taskie dasturining xodimlarni kelib ketish vaqtini nazorat qilish xususiyati xodimlarning ish vaqtida qayerda ekanini kuzatish va ularga tegishli monitoringni amalga oshirish uchun juda muhim vositadir.",
+        "img": "5.png"
       },
       {
-        "title": "Hisobotlar",
-        "details": "Boshqaruvchilar bajarilgan va bajarilmagan vazifalar haqida xisobotlarni ko'rishlari va ularga muvofiq chora ko'rishlari mumkin."
+        "title": "Bildirishnoma",
+        "details": "Bundan tashqari, vazifa menejerlari ko'pincha taskiega yuborilgan chiquvchi bildirishnomalar yoki eslatmalar yordamida vazifalarni bajarish muddatlari bilan bog'liq muammolarni oldini olishga yordam beradi . Masalan, rejalashtirilgan yetkazib berish sanasidan bir kun oldin pudratchi taskie dasturi orqali topshiriqlarni taskie ilovasi bilan eslatma oladi.",
+        "img": "4.png"
+      },
+      {
+        "title": "Mobil Ilova va Web Desktop",
+        "details": "Taskie dasturining afzalliklaridan yana biri - uning mobil ilovalari va web ko'rinishining mavjudligidir.",
+        "img": "3.png"
+      },
+      {
+        "title": "Xodimlarning ma'lumot bazasi",
+        "details": "Taskie Dasturi Orqali Xodimlarning Ma'lumot Bazasini Boshqarish",
+        "img": "2.png"
       }
     ]
   },
